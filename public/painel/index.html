@@ -1,0 +1,84 @@
+<fi></fi><!DOCTYPE html><html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="p:domain_verify" content="17bc4db57bd63c5aae6b80362388b46f"/><meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="shortcut icon" href="/avatar.png"><title>Acessar</title><link href="/painel/css/sb-admin.css" rel="stylesheet"><script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script><script src="/painel/vendor/jquery/jquery.min.js"></script>
+<script>
+var config = {
+	apiKey: "AIzaSyAdt7DQf3k3zzvAq-wV6OK29GDLqMVQBmY",
+	authDomain: "kin-network-me.firebaseapp.com",
+	databaseURL: "https://kin-network-me.firebaseio.com",
+	projectId: "kin-network-me",
+	storageBucket: "kin-network-me.appspot.com",
+	messagingSenderId: "694927497991"
+};
+firebase.initializeApp(config);
+$(document).ready(function() {
+	$("#conect").click(function() {
+			$("#conect").text("Acessando...");
+			$("#conect").prop('disabled', true);
+				var email = $("#email").val();
+				var senha = $("#senha").val();
+				if(email && senha != ""){
+					firebase.auth().signInWithEmailAndPassword(email, senha).catch(function(error) {
+						var errorCode = error.code;
+						console.log(errorCode);
+						switch (errorCode) {
+						    case "auth/invalid-email":
+						        $("#conect").text("Você erro o seu email.");
+						        break;
+						    case "auth/user-disabled":
+						        $("#conect").text("Sua conta está desativada.");
+						        break;
+						    case "auth/user-not-found":
+						        $("#conect").text("Você não tem uma conta.");
+						        break;
+						    case "auth/wrong-password":
+						        $("#conect").text("Você erro sua senha.");
+						        break;
+						    default:
+						        $("#conect").text("Algo de errado não está certo");
+						}
+						$("#conect").addClass("btn-danger");$("#conect").removeClass("btn-primary");
+						setTimeout(function(){
+							$("#conect").addClass("btn-primary");$("#conect").removeClass("btn-danger");$("#conect").text("Acessar");$("#conect").prop('disabled', false);
+						}, 3000);
+				  	});
+					setTimeout(function(){
+						$("#conect").addClass("btn-primary");$("#conect").removeClass("btn-danger");$("#conect").text("Acessar");$("#conect").prop('disabled', false);
+					}, 3000);
+				}else{
+					$("#conect").addClass("btn-danger");$("#conect").removeClass("btn-primary");
+					$("#conect").text("Você esqueceu de algo.");
+					setTimeout(function(){
+						$("#conect").addClass("btn-primary");$("#conect").removeClass("btn-danger");$("#conect").text("Acessar");$("#conect").prop('disabled', false);
+					}, 3000);
+				}
+	});
+});
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        window.location.href = "/painel/dashboard";
+    }
+});
+</script>
+</head>
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5" style="margin-top: 13rem !important;">
+      <div class="card-header" style="text-align: center;">Acessar</div>
+      <div class="card-body">
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="email" class="form-control">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="password" id="senha" class="form-control">
+              <label for="senha">Senha</label>
+            </div>
+		</div>
+		<button class="btn btn-primary btn-block" id="conect">Conectar-se</button>
+      </div>
+    </div>
+</div>
+</body>
+</html>
