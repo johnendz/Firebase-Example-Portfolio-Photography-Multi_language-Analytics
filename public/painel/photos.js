@@ -32,21 +32,21 @@ function excluir(elem){
 		confirmButtonColor: '#d33',
 		cancelButtonColor: '#3085d6',
 		confirmButtonText: 'Sim, quero excluir!',
-	cancelButtonText: 'Não quero excluir',
+        cancelButtonText: 'Não quero excluir',
 	}).then((result) => {
 		if (result.value) {
 			storage.ref().child('/photos/' + postid + '.jpg').delete().then(function() {
 				db.collection("photos").doc(postid).delete().then(function() {
 					swal(
-						'Foto Excluida!',
-						'Sua foto foi excluida com sucesso.',
-						'success'
+                    'Foto Excluida!',
+                    'Sua foto foi excluida com sucesso.',
+                    'success'
 					)
 				}).catch(function(error) {
 					swal(
-						'Oops...',
-						'Sua foto não foi excluida.',
-						'error'
+                    'Oops...',
+                    'Sua foto não foi excluida.',
+                    'error'
 					)
 					console.error("Error removing document: ", error);
 				});
@@ -62,10 +62,10 @@ function excluir(elem){
 	})
 }
 db.collection("photos")
-	.onSnapshot(function(querySnapshot) {
-		$("#listphotos").html("");
-        querySnapshot.forEach(function(doc) {
-			var storagestring = formatBytes(doc.data().size);
-            $("#listphotos").append("<tr><td>" + doc.data().pt_titulo + "</td><td>" + doc.data().desc + "</td><td>" + storagestring + "</td><td><button type='button' class='btn btn-danger' onclick='excluir(this);' id='" + doc.id + "'>Excluir</button></td></tr>");
-        });
+.onSnapshot(function(querySnapshot) {
+    $("#listphotos").html("");
+    querySnapshot.forEach(function(doc) {
+        var storagestring = formatBytes(doc.data().size);
+        $("#listphotos").append("<tr><td>" + doc.data().pt_titulo + "</td><td>" + doc.data().desc + "</td><td>" + storagestring + "</td><td><button type='button' class='btn btn-danger' onclick='excluir(this);' id='" + doc.id + "'>Excluir</button></td></tr>");
+    });
 });
