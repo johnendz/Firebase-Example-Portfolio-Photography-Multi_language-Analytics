@@ -1,15 +1,17 @@
+//config do firebase web (copie do firebase e cole sobre o codigo abaixo)
 var config = {
-	apiKey: "AIzaSyAdt7DQf3k3zzvAq-wV6OK29GDLqMVQBmY",
-	authDomain: "kin-network-me.firebaseapp.com",
-	databaseURL: "https://kin-network-me.firebaseio.com",
-	projectId: "kin-network-me",
-	storageBucket: "kin-network-me.appspot.com",
-	messagingSenderId: "694927497991"
+	apiKey: "",
+	authDomain: "",
+	databaseURL: "",
+	projectId: "",
+	storageBucket: "",
+	messagingSenderId: ""
 };
 firebase.initializeApp(config);
+//config do firebase web
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		if(user.uid == "tAamW4K4cdUYcr6L5CsmK8e0VUj1"){
+		if(user.uid == "id do usuario"){
 			
 		}else{
 			window.location.href = '/painel';	
