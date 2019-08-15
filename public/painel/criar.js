@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 //config do firebase web
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		if(user.uid == "tAamW4K4cdUYcr6L5CsmK8e0VUj1"){
+		if(user.uid == "id do usuario"){
 			
 		}else{
 			window.location.href = '/painel';	
@@ -24,12 +24,12 @@ var db = firebase.firestore();
 var storage = firebase.storage();
 $(document).ready(function() {
 	function dataURLtoBlob(dataURL) {
-	  var binary = atob(dataURL.split(',')[1]);
-	  var array = [];
-	  for(var i = 0; i < binary.length; i++) {
-	      array.push(binary.charCodeAt(i));
-	  }
-	  return new Blob([new Uint8Array(array)], {type: 'image/png'});
+        var binary = atob(dataURL.split(',')[1]);
+        var array = [];
+        for(var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], {type: 'image/png'});
 	}
 	function functioncompress(docid) {
 		var file = document.getElementById("imagem").files[0];
