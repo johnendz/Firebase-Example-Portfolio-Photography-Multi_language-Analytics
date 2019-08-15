@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 //config do firebase web
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		if(user.uid == "tAamW4K4cdUYcr6L5CsmK8e0VUj1"){
+		if(user.uid == "id do usuario"){
 			
 		}else{
 			window.location.href = '/painel';	
