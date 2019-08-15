@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 //config do firebase web
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		if(user.uid == "tAamW4K4cdUYcr6L5CsmK8e0VUj1"){
+		if(user.uid == "id do usuario"){
 			
 		}else{
 			window.location.href = '/painel';	
@@ -29,20 +29,20 @@ db.collection("devices").orderBy("date", "desc")
 			var data = new Date(doc.data().date);
 		    var dia  = data.getDate();
 		    if (dia< 10) {
-		    dia  = "0" + dia;
+                dia  = "0" + dia;
 		    }
 		    var mes  = data.getMonth() + 1;
 		    if (mes < 10) {
-		    mes  = "0" + mes;
+                mes  = "0" + mes;
 		    }
 		    var ano  = data.getFullYear();
 		    var hora  = data.getHours();
 			var minuto = data.getMinutes();
 			if (hora < 10) {
-		    hora  = "0" + hora;
+                hora  = "0" + hora;
 		    }
 			if (minuto < 10) {
-			minuto  = "0" + minuto;
+                minuto  = "0" + minuto;
 			}
 		    var fulldata = dia + "/" + mes + "/" + ano + "  " + hora + ":" + minuto;
 		}else{
