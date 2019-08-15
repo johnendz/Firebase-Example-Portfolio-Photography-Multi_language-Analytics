@@ -1,0 +1,12 @@
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /photos/{id} {
+    	allow read: if true;
+      allow update, delete, create: if request.auth.uid == "id do usuario";
+      match /{document=**} {
+          allow read: if true;
+          allow update, delete, create: if request.auth.uid == "id do usuario";
+      }
+    }
+  }
+}
