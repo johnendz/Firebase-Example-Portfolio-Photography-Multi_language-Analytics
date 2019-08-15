@@ -1,47 +1,50 @@
 popup = {
-				  init: function(){
-				    $('figure').click(function(){
-				      popup.open($(this));
-				    });
+    init: function(){
+        $('figure').click(function(){
+            popup.open($(this));
+        });
 				    
-				    $(document).on('click', '.popup img', function(){
-				      return false;
-				    }).on('click', '.popup', function(){
-				      popup.close();
-				    })
-				  },
-				  open: function($figure) {
-				    $('.gallery').addClass('pop');
-				    $popup = $('<div class="popup" />').appendTo($('body'));
-				    $fig = $figure.clone().appendTo($('.popup'));
-				    $bg = $('<div class="bg" />').appendTo($('.popup'));
-				    $close = $('<div class="close"><svg><use xlink:href="#close"></use></svg></div>').appendTo($fig);
-				    $shadow = $('<div class="shadow" />').appendTo($fig);
-				    src = $('img', $fig).attr('src');
-					var id = $figure.attr("id");
-					clickcount(id);
-				    $shadow.css({backgroundImage: 'url(' + src + ')'});
-				    $bg.css({backgroundImage: 'url(' + src + ')'});
-				    setTimeout(function(){
-				      $('.popup').addClass('pop');
-				    }, 10);
-				  },
-				  close: function(){
-				    $('.gallery, .popup').removeClass('pop');
-				    setTimeout(function(){
-				      $('.popup').remove()
-				    }, 100);
-				  }
+        $(document).on('click', '.popup img', function(){
+            return false;
+        }).on('click', '.popup', function(){
+            popup.close();
+        })
+    },
+    open: function($figure) {
+        $('.gallery').addClass('pop');
+        $popup = $('<div class="popup" />').appendTo($('body'));
+        $fig = $figure.clone().appendTo($('.popup'));
+        $bg = $('<div class="bg" />').appendTo($('.popup'));
+        $close = $('<div class="close"><svg><use xlink:href="#close"></use></svg></div>').appendTo($fig);
+        $shadow = $('<div class="shadow" />').appendTo($fig);
+        src = $('img', $fig).attr('src');
+        var id = $figure.attr("id");
+        clickcount(id);
+        $shadow.css({backgroundImage: 'url(' + src + ')'});
+        $bg.css({backgroundImage: 'url(' + src + ')'});
+        setTimeout(function(){
+            $('.popup').addClass('pop');
+        }, 10);
+    },
+    close: function(){
+        $('.gallery, .popup').removeClass('pop');
+        setTimeout(function(){
+            $('.popup').remove()
+        }, 100);
+    }
 }
+//config do firebase web (copie do firebase e cole sobre o codigo abaixo)
 var config = {
-	apiKey: "AIzaSyAdt7DQf3k3zzvAq-wV6OK29GDLqMVQBmY",
-	authDomain: "kin-network-me.firebaseapp.com",
-	databaseURL: "https://kin-network-me.firebaseio.com",
-	projectId: "kin-network-me",
-	storageBucket: "kin-network-me.appspot.com",
-	messagingSenderId: "694927497991"
+	apiKey: "",
+	authDomain: "",
+	databaseURL: "",
+	projectId: "",
+	storageBucket: "",
+	messagingSenderId: ""
 };
 firebase.initializeApp(config);
+//config do firebase web
+
 var db = firebase.firestore();
 db.collection("photos")
 .onSnapshot(function(querySnapshot) {
@@ -146,32 +149,32 @@ db.collection("photos")
         // system
         var os = unknown;
         var clientStrings = [
-            {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
-            {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
-            {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
-            {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
-            {s:'Windows Vista', r:/Windows NT 6.0/},
-            {s:'Windows Server 2003', r:/Windows NT 5.2/},
-            {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
-            {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
-            {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
-            {s:'Windows 98', r:/(Windows 98|Win98)/},
-            {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
-            {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
-            {s:'Windows CE', r:/Windows CE/},
-            {s:'Windows 3.11', r:/Win16/},
-            {s:'Android', r:/Android/},
-            {s:'Open BSD', r:/OpenBSD/},
-            {s:'Sun OS', r:/SunOS/},
-            {s:'Linux', r:/(Linux|X11)/},
-            {s:'iOS', r:/(iPhone|iPad|iPod)/},
-            {s:'Mac OS X', r:/Mac OS X/},
-            {s:'Mac OS', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
-            {s:'QNX', r:/QNX/},
-            {s:'UNIX', r:/UNIX/},
-            {s:'BeOS', r:/BeOS/},
-            {s:'OS/2', r:/OS\/2/},
-            {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
+        {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
+        {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
+        {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
+        {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
+        {s:'Windows Vista', r:/Windows NT 6.0/},
+        {s:'Windows Server 2003', r:/Windows NT 5.2/},
+        {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
+        {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
+        {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
+        {s:'Windows 98', r:/(Windows 98|Win98)/},
+        {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
+        {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
+        {s:'Windows CE', r:/Windows CE/},
+        {s:'Windows 3.11', r:/Win16/},
+        {s:'Android', r:/Android/},
+        {s:'Open BSD', r:/OpenBSD/},
+        {s:'Sun OS', r:/SunOS/},
+        {s:'Linux', r:/(Linux|X11)/},
+        {s:'iOS', r:/(iPhone|iPad|iPod)/},
+        {s:'Mac OS X', r:/Mac OS X/},
+        {s:'Mac OS', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
+        {s:'QNX', r:/QNX/},
+        {s:'UNIX', r:/UNIX/},
+        {s:'BeOS', r:/BeOS/},
+        {s:'OS/2', r:/OS\/2/},
+        {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
         ];
         for (var id in clientStrings) {
             var cs = clientStrings[id];
@@ -190,17 +193,17 @@ db.collection("photos")
 
         switch (os) {
             case 'Mac OS X':
-                osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
-                break;
+            osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
+            break;
 
             case 'Android':
-                osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
-                break;
+            osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
+            break;
 
             case 'iOS':
-                osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-                osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
-                break;
+            osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
+            osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+            break;
         }
     }
 
@@ -215,10 +218,10 @@ db.collection("photos")
     };
 }(this));
 function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toGMTString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";";
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";";
 }
 function getCookie(name) {
     var cookies = document.cookie;
@@ -248,45 +251,45 @@ function getCookie(name) {
 var osfull = device.os + " " + device.osVersion;
 var browserfull = device.browser + " " + device.browserMajorVersion + " (" + device.browserVersion + ")";
 if (getCookie("view") != "true" && getCookie("notrack") != "true"){
-function ipLookUp () {
-$.ajax('https://ipapi.co/json').then(
-	function success(response) {
-		setCookie("ip", response.ip, "1");
-		db.collection("devices").add({
-		    os: device.os,
-			osfull: osfull,
-			browser: device.browser,
-			browserfull: browserfull,
-			mobile: device.mobile,
-			screensize: device.screen,
-			useragent: navigator.userAgent,
-			date: new Date().getTime(),
-			country: response.country_name,
-			countrycode: response.country,
-			ip: response.ip,
-			region: response.region,
-			city: response.city,
-			language: navigator.language
-		});
-		setCookie("view", "true", "1");
-    },
-	function fail(data, status) {
-        db.collection("devices").add({
-		    os: device.os,
-			osfull: osfull,
-			browser: device.browser,
-			browserfull: browserfull,
-			mobile: device.mobile,
-			screensize: device.screen,
-			useragent: navigator.userAgent,
-			date: new Date().getTime(),
-			language: navigator.language
-		});
-		setCookie("view", "true", "1");
-      }
-  );
-}
-ipLookUp()
+    function ipLookUp () {
+        $.ajax('https://ipapi.co/json').then(
+        function success(response) {
+            setCookie("ip", response.ip, "1");
+            db.collection("devices").add({
+                os: device.os,
+                osfull: osfull,
+                browser: device.browser,
+                browserfull: browserfull,
+                mobile: device.mobile,
+                screensize: device.screen,
+                useragent: navigator.userAgent,
+                date: new Date().getTime(),
+                country: response.country_name,
+                countrycode: response.country,
+                ip: response.ip,
+                region: response.region,
+                city: response.city,
+                language: navigator.language
+            });
+            setCookie("view", "true", "1");
+        },
+        function fail(data, status) {
+            db.collection("devices").add({
+                os: device.os,
+                osfull: osfull,
+                browser: device.browser,
+                browserfull: browserfull,
+                mobile: device.mobile,
+                screensize: device.screen,
+                useragent: navigator.userAgent,
+                date: new Date().getTime(),
+                language: navigator.language
+            });
+            setCookie("view", "true", "1");
+        }
+        );
+    }
+    ipLookUp()
 }
 var clickid = {openbook: 'openbook', telegram: 'telegram', steam: 'steam'};
 function clickcount(clickid) {
